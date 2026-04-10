@@ -2,6 +2,23 @@
 
 Client for publishing and subscribing to events through the Platfor.me message broker.
 
+## Client overview
+
+`github.com/myplatforme/glider-client-go` is a lightweight Go client for module-to-module communication through the Platfor.me PubSub broker.
+
+Use this client when your service needs to:
+- publish business events (`order.created`, `invoice.paid`, etc.);
+- subscribe to events from other modules;
+- run request-response flows over events (`ack`);
+- route messages by scope (`project`, `segment`, `root`);
+- carry typed metadata and handler errors across service boundaries.
+
+Core runtime behavior:
+- outgoing requests are authenticated with HMAC-SHA256 using `Secret`;
+- subscriptions are long-lived and stop when the provided `context.Context` is cancelled;
+- publish calls support both fire-and-forget and waiting for a response;
+- broker certificate mapping can be configured for private CA deployments.
+
 ## Connection
 
 ```go
